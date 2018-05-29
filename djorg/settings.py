@@ -34,6 +34,8 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.spl
 
 INSTALLED_APPS = [
     'bookmark',
+    'notes',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +128,10 @@ STATIC_URL = '/static/'
 
 # Activate Django-Heroku.
 # django_heroku.settings(locals())
+
+# Django REST framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ]
+}
