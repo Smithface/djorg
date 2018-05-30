@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'bookmark',
     'notes',
     'rest_framework',
+    'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,4 +135,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     ]
+}
+
+# Graphene
+GRAPHENE = {
+    'SCHEMA': 'notes.schema.schema'
 }

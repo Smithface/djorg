@@ -17,3 +17,15 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
 class NoteViewSet(viewsets.ModelViewSet):
   serializer_class = NoteSerializer
   queryset = Note.objects.all()
+
+  def get_queryset(self):
+    # try:
+    #   return Note.objects.filter(user=self.request.user)
+    # except:
+    #   return Note.objects.none()
+    user = self.request.user
+
+    if user.is_anonymous:
+      return Note.objects.none()
+    else:
+      return Note.objects.filter(user=user)
