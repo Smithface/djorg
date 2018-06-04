@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'bookmark',
     'notes',
     'rest_framework',
+    'rest_framework.authtoken',
     'graphene_django',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -131,13 +134,32 @@ STATIC_URL = '/static/'
 # django_heroku.settings(locals())
 
 # Django REST framework
+from rest_framework.authentication import SessionAuthentication, BaseAuthentication, TokenAuthentication
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ]
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
 }
 
 # Graphene
 GRAPHENE = {
     'SCHEMA': 'notes.schema.schema'
 }
+
+#CORS Config
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000/',
+)
+
+CSRF_TRUSTED_ORIGINS = (
+    'http://localhost:3000/',
+)
