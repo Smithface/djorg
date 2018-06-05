@@ -17,7 +17,7 @@ class NoteList extends React.Component {
       return <div>Error</div>
     }
 
-    const notesToRender = this.props.data.notes
+    const notesToRender = this.props.data.allNotes
 
     return (
       <div>
@@ -29,7 +29,7 @@ class NoteList extends React.Component {
 
 const FEED_QUERY = gql`
   query {
-    notes {
+    allNotes {
       id
       title
       content

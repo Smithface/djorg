@@ -12,7 +12,7 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
   
   class Meta:
     model = Note
-    fields = ('title', 'content')
+    fields = ('title', 'content', 'id')
   
 class NoteViewSet(viewsets.ModelViewSet):
   serializer_class = NoteSerializer

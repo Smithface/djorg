@@ -1,9 +1,16 @@
 import React from 'react';
-import NoteList from './NoteList'
+import NoteList from './NoteList';
+import REST from './REST';
 
 class App extends React.Component {
   render() {
-    return <NoteList />
+    return (
+      <div>
+        <NoteList />
+        <hr/>
+        <REST />
+      </div>
+    )
   }
 }
 
